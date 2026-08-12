@@ -1,0 +1,21 @@
+services:
+  palworld-server:
+    # https://github.com/pocketpairjp/palworld-dedicated-server-docker/pkgs/container/palserver
+    image: ghcr.io/pocketpairjp/palserver:v1.0.3.101283
+    network_mode: #"container:wg-portal"
+    entrypoint: /pal/entrypoint.sh
+
+    # https://tech.palworldgame.com/settings-and-operation/arguments
+    command:
+      - -port=8211
+      - -useperfthreads
+      - -NoAsyncLoadingThread
+      - -UseMultithreadForDS
+
+   # ports:
+   #   - "8211:8211/udp"
+    volumes:
+      - ./scripts/entrypoint.sh:/pal/entrypoint.sh:ro
+      - ./Saved:/pal/Package/Pal/Saved
+      - ./config/PalWorldSettings.ini:/pal/Package/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini:ro
+      

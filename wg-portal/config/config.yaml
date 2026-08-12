@@ -1,0 +1,19 @@
+web:
+  listening_address: :8888
+  site_company_name: 'The Hosting Company'
+  site_title: 'Yep'
+  request_logging: true
+
+core:
+  self_provisioning_allowed: true
+
+advanced:
+  # Maximum additional peers each normal user may create.
+  # 0 means unlimited.
+  limit_additional_user_peers: 25
+
+# Create this interface manually in the web GUI:
+# device_name: wg0
+# listen_port: 51820
+# address: 10.100.69.1/24
+# default peer AllowedIPs: 10.100.69.1/32  (clients reach server only, not each other)

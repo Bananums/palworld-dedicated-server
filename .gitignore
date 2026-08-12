@@ -1,0 +1,6 @@
+wg-portal/.env
+wg-portal/data
+wg-portal/data/sqlite.db
+
+# Palworld runtime/save data
+palworld/Saved/*
