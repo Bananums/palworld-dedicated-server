@@ -1,0 +1,16 @@
+services:
+  pal-manager:
+    build: .
+    image: bananums/pal-manager:dev
+    container_name: pal-manager
+    user: "999:999"
+    network_mode: host
+    restart: "no"
+    environment:
+      - PAL_LISTEN=127.0.0.1:8080
+      - PAL_SETTINGS=/data/live/PalWorldSettings.ini
+      - PAL_DEFAULTS=/data/defaults/DefaultPalWorldSettings.ini
+      - PAL_REST=http://127.0.0.1:8212/v1/api
+    volumes:
+      - ../palworld/saved/Config/LinuxServer:/data/live:ro   # drop :ro at step 4
+      - ../palworld/defaults:/data/defaults:ro

@@ -20,5 +20,16 @@ services:
    #   - "8211:8211/udp"
     volumes:
       - ./scripts/entrypoint.sh:/pal/entrypoint.sh:ro
-      - ./Saved:/pal/Package/Pal/Saved
-      - ./config/PalWorldSettings.ini:/pal/Package/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini:ro
+      - ./saved:/pal/Package/Pal/Saved
+      - ./defaults:/pal/defaults
+
+  pal-manager:
+    image: bananums/pal-manager:dev #Dev to test, pin version after stabilizing/release
+    environment:
+      - PAL_LISTEN=127.0.0.1:8080
+      - PAL_SETTINGS=/data/live/PalWorldSettings.ini
+      - PAL_DEFAULTS=/data/defaults/DefaultPalWorldSettings.ini
+      - PAL_REST=http://127.0.0.1:8212/v1/api
+    volumes:
+      - ./saved/Config/LinuxServer:/data/live
+      - ./defaults:/data/defaults:ro
